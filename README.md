@@ -6,6 +6,7 @@ Complete implementation of the Computational Intelligence (CI) course project: A
 ```text
 traffic_fuzzy_control/
 ├── README.md                  # This file
+├── .gitignore                 # Specifies intentionally untracked files to ignore
 ├── requirements.txt           # Python dependencies
 ├── main.py                    # Full project execution (baseline -> PSO -> ACO -> comparison)
 ├── run_baseline.py            # Runs only the manually designed fuzzy controller
@@ -20,13 +21,9 @@ traffic_fuzzy_control/
 │   ├── pso.py                  # PSO implementation
 │   ├── aco.py                  # ACO implementation (discretized version for continuous space)
 │   └── plotting.py             # Helper functions for plotting
-├── results/
-│   ├── data/                   # JSON output for each stage (raw numerical results)
-│   └── plots/                  # PNG plots (convergence, comparison, stability)
-└── report/
-└── report.md               # Full report in Persian (modeling, design, results, analysis)
-
-The results and plots available in `results/` are pre-generated and saved (from an actual complete run of the project) so there is no need to re-run it; however, you can run the entire project from scratch if you wish.
+└── results/                    # Generated automatically after execution
+├── data/                   # JSON output for each stage (ignored in Git)
+└── plots/                  # PNG plots (ignored in Git)
 
 ## How to Run
 
@@ -42,7 +39,7 @@ Only `numpy` and `matplotlib` are required.
 bash
 python main.py
 
-This command sequentially runs the baseline controller, executes PSO and then ACO on the fuzzy parameters, and finally generates the comparison plots and the final table. All outputs are saved in the `results/` folder. The total execution time with default settings is approximately 30 seconds.
+This command sequentially runs the baseline controller, executes PSO and then ACO on the fuzzy parameters, and finally generates the comparison plots and the final table. All outputs are dynamically generated and saved in the `results/` folder. The total execution time with default settings is approximately $30$ seconds.
 
 ### 3. Step-by-Step Execution (Optional)
 

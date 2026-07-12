@@ -1,0 +1,11 @@
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Output results and generated plots
+results/data/
+results/plots/
+
+# Private report folder
+report/
