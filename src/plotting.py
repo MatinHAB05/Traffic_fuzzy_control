@@ -1,7 +1,7 @@
 """Plot helpers for convergence curves and algorithm comparison."""
+import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 
 
 def plot_convergence(history, title, out_path):
