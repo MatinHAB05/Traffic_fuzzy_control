@@ -5,7 +5,7 @@ import json
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from src.aco import ACO
+from src.aco_arch import ACO
 from src.cost import evaluate
 from src.plotting import plot_convergence
 
