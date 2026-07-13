@@ -58,21 +58,24 @@ class TrafficSimulation:
         for _ in range(self.n_cycles):
             g1_raw = self.controller.compute_green_time(q1, q2)
             g1 = int(round(min(max(g1_raw, cfg.GREEN_MIN), cfg.GREEN_MAX)))
-            g2 = int(round(min(max(cfg.CYCLE_TIME - g1, cfg.GREEN_MIN), cfg.GREEN_MAX)))
+            g2 = int(
+                round(min(max(cfg.CYCLE_TIME - g1, cfg.GREEN_MIN), cfg.GREEN_MAX)))
 
             q1_history.append(q1)
             q2_history.append(q2)
             g1_history.append(g1)
 
             # phase 1: road 1 green, road 2 red
-            q1, q2, qs1, s1, sv1 = self._phase(q1, q2, g1, self.lam1, self.lam2)
+            q1, q2, qs1, s1, sv1 = self._phase(
+                q1, q2, g1, self.lam1, self.lam2)
             queue_seconds_total += qs1
             stops_total += s1
             served_total += sv1
             seconds_total += g1
 
             # phase 2: road 2 green, road 1 red
-            q2, q1, qs2, s2, sv2 = self._phase(q2, q1, g2, self.lam2, self.lam1)
+            q2, q1, qs2, s2, sv2 = self._phase(
+                q2, q1, g2, self.lam2, self.lam1)
             queue_seconds_total += qs2
             stops_total += s2
             served_total += sv2

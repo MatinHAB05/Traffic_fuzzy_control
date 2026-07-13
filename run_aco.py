@@ -1,13 +1,13 @@
 """Run ACO optimization on the fuzzy controller parameters."""
+from src.plotting import plot_convergence
+from src.cost import evaluate
+from src.aco_arch import ACO
 import os
 import sys
 import json
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from src.aco_arch import ACO
-from src.cost import evaluate
-from src.plotting import plot_convergence
 
 OUT_DATA = "results/data"
 OUT_PLOTS = "results/plots"
@@ -22,9 +22,11 @@ def main():
     _, metrics = evaluate(best_params, return_metrics=True)
 
     print("ACO optimization finished")
-    print(f"  best_cost={best_cost:.4f}  W={metrics['W']:.3f}  Q={metrics['Q']:.3f}  S={metrics['S']:.1f}")
+    print(
+        f"  best_cost={best_cost:.4f}  W={metrics['W']:.3f}  Q={metrics['Q']:.3f}  S={metrics['S']:.1f}")
 
-    plot_convergence(history, "ACO Convergence", f"{OUT_PLOTS}/aco_convergence.png")
+    plot_convergence(history, "ACO Convergence",
+                     f"{OUT_PLOTS}/aco_convergence.png")
 
     data = {
         "best_cost": best_cost,

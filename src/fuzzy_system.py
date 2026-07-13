@@ -84,7 +84,8 @@ class FuzzyController:
         self.out_var = FuzzyVariable(cfg.GREEN_MIN, cfg.GREEN_MAX, params[6:9])
         self.rule_weights = np.clip(params[9:18], 0.0, 1.0)
 
-        self._out_x = np.linspace(cfg.GREEN_MIN, cfg.GREEN_MAX, self.N_OUT_POINTS)
+        self._out_x = np.linspace(
+            cfg.GREEN_MIN, cfg.GREEN_MAX, self.N_OUT_POINTS)
         # output labels (short/medium/long) map to the generic set
         # positions (low/medium/high) used by FuzzyVariable
         out_to_generic = {"short": "low", "medium": "medium", "long": "high"}
@@ -98,7 +99,8 @@ class FuzzyController:
         p = np.zeros(FuzzyController.N_PARAMS)
         p[0:3] = [0, cfg.QUEUE_MAX / 2, cfg.QUEUE_MAX]
         p[3:6] = [0, cfg.QUEUE_MAX / 2, cfg.QUEUE_MAX]
-        p[6:9] = [cfg.GREEN_MIN, (cfg.GREEN_MIN + cfg.GREEN_MAX) / 2, cfg.GREEN_MAX]
+        p[6:9] = [cfg.GREEN_MIN,
+                  (cfg.GREEN_MIN + cfg.GREEN_MAX) / 2, cfg.GREEN_MAX]
         p[9:18] = 1.0
         return p
 

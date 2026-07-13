@@ -65,7 +65,8 @@ class ACO:
         alpha = self.alpha_min + (self.alpha_max - self.alpha_min) * progress
         beta = self.beta_max - (self.beta_max - self.beta_min) * progress
         rho = self.rho_max - (self.rho_max - self.rho_min) * progress
-        epsilon = self.epsilon_max - (self.epsilon_max - self.epsilon_min) * progress
+        epsilon = self.epsilon_max - \
+            (self.epsilon_max - self.epsilon_min) * progress
 
         return alpha, beta, rho, epsilon
 
@@ -111,7 +112,8 @@ class ACO:
             params[d] = self.levels[d, i]
 
             # ACS local pheromone update
-            self.tau[d, i] = (1.0 - local_rho) * self.tau[d, i] + local_rho * self.tau0
+            self.tau[d, i] = (1.0 - local_rho) * \
+                self.tau[d, i] + local_rho * self.tau0
 
         # Apply mutation (continuous)
         params = self._mutate(params)
@@ -130,10 +132,12 @@ class ACO:
             all_cost = np.zeros(self.n_ants)
 
             # Local rho decreases over time
-            local_rho = self.local_rho_max - (self.local_rho_max - self.local_rho_min) * (it / self.n_iter)
+            local_rho = self.local_rho_max - \
+                (self.local_rho_max - self.local_rho_min) * (it / self.n_iter)
 
             for a in range(self.n_ants):
-                idx, params = self._construct_solution(alpha, beta, epsilon, local_rho)
+                idx, params = self._construct_solution(
+                    alpha, beta, epsilon, local_rho)
                 repaired = repair(params)
                 cost = evaluate(repaired)
                 all_idx[a] = idx
@@ -165,7 +169,8 @@ class ACO:
 
             # Elite reinforcement (reduced bonus)
             if best_idx is not None:
-                elite_deposit = self.elite_bonus_multiplier * cfg.ACO_ELITE_BONUS * cfg.ACO_Q / max(best_cost, 1e-6)
+                elite_deposit = self.elite_bonus_multiplier * \
+                    cfg.ACO_ELITE_BONUS * cfg.ACO_Q / max(best_cost, 1e-6)
                 for d in range(self.dim):
                     self.tau[d, best_idx[d]] += elite_deposit
 
@@ -180,7 +185,8 @@ class ACO:
 
             # Stronger stagnation recovery
             if self.stagnation_counter >= self.stagnation_limit and best_idx is not None:
-                print(f"[ACO] Stagnation at iteration {it+1}. Resetting pheromone structure.")
+                print(
+                    f"[ACO] Stagnation at iteration {it+1}. Resetting pheromone structure.")
                 # Reset best path to tau0 and reduce all others
                 for d in range(self.dim):
                     self.tau[d, best_idx[d]] = self.tau0
