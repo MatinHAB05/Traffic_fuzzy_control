@@ -39,8 +39,7 @@ class TrafficSimulation:
             q_green -= depart
             served += depart
 
-            if q_red > 0:
-                stops += 1
+            stops += arr_red[t]
 
             queue_seconds += q_green + q_red
 
