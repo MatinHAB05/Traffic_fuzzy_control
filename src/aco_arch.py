@@ -13,8 +13,10 @@ class ACO:
         archive_size: int = getattr(cfg, "ACOR_ARCHIVE_SIZE", 30),
         q: float = getattr(cfg, "ACOR_Q_INTENSITY", 0.5),
         xi: float = getattr(cfg, "ACOR_XI_EVAPORATION", 0.5),
-        seed: int = getattr(cfg, "ACOR_RANDOM_SEED", 42)
+        seed: int = getattr(cfg, "ACOR_RANDOM_SEED", 42),
+        debug_mode=False
     ):
+        self.debug_mode = debug_mode
         self.n_ants = n_ants
         self.n_iter = n_iter
         self.k = archive_size
@@ -52,6 +54,10 @@ class ACO:
 
         # ---- Create a persistent process pool ----
         self.executor = ProcessPoolExecutor(max_workers=self.max_workers)
+
+        if self.debug_mode:
+            self.n_ants //= 10
+            self.n_iter //= 10
 
     def _latin_hypercube(self, n: int) -> np.ndarray:
         """Generate n samples in [0,1)^dim using Latin Hypercube."""

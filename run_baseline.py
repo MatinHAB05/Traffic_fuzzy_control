@@ -15,7 +15,7 @@ OUT_DATA = "results/data"
 OUT_PLOTS = "results/plots"
 
 
-def main():
+def main(debug_mode=False):
     os.makedirs(OUT_DATA, exist_ok=True)
     os.makedirs(OUT_PLOTS, exist_ok=True)
 

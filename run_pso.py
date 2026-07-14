@@ -13,11 +13,12 @@ OUT_DATA = "results/data"
 OUT_PLOTS = "results/plots"
 
 
-def main():
+def main(debug_mode=False):
     os.makedirs(OUT_DATA, exist_ok=True)
     os.makedirs(OUT_PLOTS, exist_ok=True)
 
-    optimizer = PSO()
+    
+    optimizer = PSO(debug_mode=debug_mode)
     best_params, best_cost, history = optimizer.optimize()
     _, metrics = evaluate(best_params, return_metrics=True)
 

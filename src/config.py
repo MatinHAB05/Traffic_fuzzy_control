@@ -1,6 +1,9 @@
 """Global configuration constants for the traffic simulation,
 fuzzy controller and optimization algorithms."""
 
+
+
+
 # --- Fuzzy domain limits ---
 # max queue length used in fuzzy input domain (vehicles)
 QUEUE_MAX = 20
