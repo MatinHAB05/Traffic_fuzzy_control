@@ -68,12 +68,12 @@ PSO_TOL_RELATIVE = 1e-4                # relative to previous personal best cost
 
 # ========== Parallel ==========
 # number of processes (set to None for auto)
-PSO_N_WORKERS = 8
+PSO_N_WORKERS = 12
 
 
 # --- ACO hyperparameters (discretized continuous ACO) ---
 ACO_N_ANTS = 500
-ACO_ITERATIONS = 100
+ACO_ITERATIONS = 50
 ACO_N_LEVELS = 10
 ACO_RHO = 0.3
 ACO_Q = 1.0
@@ -127,7 +127,7 @@ ACO_ELITE_BONUS_MULTIPLIER = 0.5
 
 # Core algorithm parameters
 ACOR_N_ANTS = 100
-ACOR_ITERATIONS = 200
+ACOR_ITERATIONS = 50
 ACOR_ARCHIVE_SIZE = 30
 # concentration (lower = more focused on top solutions)
 ACOR_Q_INTENSITY = 0.5
@@ -148,7 +148,7 @@ ACOR_KEEP_BEST_RATIO = 0.5      # fraction of best solutions to keep when resett
 ACOR_MIN_SIGMA_FRACTION = 0.01
 
 # Process pool settings
-ACOR_MAX_WORKERS = 8            # number of parallel evaluation workers
+ACOR_MAX_WORKERS = 8          # number of parallel evaluation workers
 
 # Initialisation method: 'uniform' or 'latin_hypercube'
 ACOR_INIT_METHOD = 'latin_hypercube'

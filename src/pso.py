@@ -171,8 +171,9 @@ class PSO:
 
                 X = self._repair_population(X)
 
-                seeds = cfg.PSO_SEEDS_EARLY if it < int(
-                    self.n_iter*cfg.PSO_SEEDS_END_MUL_TERM) else cfg.PSO_SEEDS_LATE
+                # seeds = cfg.PSO_SEEDS_EARLY if it < int(
+                #     self.n_iter*cfg.PSO_SEEDS_END_MUL_TERM) else cfg.PSO_SEEDS_LATE
+                seeds = cfg.PSO_SEEDS_LATE
                 costs = self._evaluate_population(executor, X, seeds)
 
                 prev_pbest_cost = pbest_cost.copy()
