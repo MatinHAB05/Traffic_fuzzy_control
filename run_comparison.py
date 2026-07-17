@@ -5,6 +5,10 @@ import numpy as np
 import os
 import sys
 import json
+from src.simulation import TrafficSimulation
+from src.fuzzy_system import FuzzyController
+from src.plotting import plot_queue_trace
+import src.config as cfg
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -51,6 +55,20 @@ def main(debug_mode=False):
     plot_stability_box(stability, "Cost (C)", "Stability Across Unseen Random Seeds",
                        f"{OUT_PLOTS}/stability_comparison.png")
 
+    print("Generating queue trace plots for all controllers...")
+    for lbl, params in param_map.items():
+        controller = FuzzyController(np.array(params))
+
+        sim = TrafficSimulation(controller, cfg.ARRIVAL_RATE_1, cfg.ARRIVAL_RATE_2,
+                                n_cycles=cfg.N_CYCLES, seed=0)
+        result = sim.run()
+
+        file_name = lbl.lower().replace(" ", "_")
+
+        plot_queue_trace(result["q1_history"], result["q2_history"],
+                         f"{lbl} Controller - Queue Length per Cycle",
+                         f"{OUT_PLOTS}/{file_name}_queue_trace.png")
+    print("All queue trace plots generated successfully!")
     summary = {
         "labels": labels,
         "costs": {lbl: c for lbl, c in zip(labels, costs)},

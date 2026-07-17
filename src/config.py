@@ -2,8 +2,6 @@
 fuzzy controller and optimization algorithms."""
 
 
-
-
 # --- Fuzzy domain limits ---
 # max queue length used in fuzzy input domain (vehicles)
 QUEUE_MAX = 20
@@ -27,6 +25,7 @@ GAMMA = 0.02
 
 RANDOM_SEED = 97
 
+#####################################################################################################################################
 # ========== PSO Hyperparameters ==========
 PSO_N_PARTICLES = 1000
 PSO_ITERATIONS = 50
@@ -70,7 +69,7 @@ PSO_TOL_RELATIVE = 1e-4                # relative to previous personal best cost
 # number of processes (set to None for auto)
 PSO_N_WORKERS = 12
 
-
+#####################################################################################################################################
 # --- ACO hyperparameters (discretized continuous ACO) ---
 ACO_N_ANTS = 500
 ACO_ITERATIONS = 50
@@ -121,12 +120,14 @@ ACO_MUTATION_SCALE = 0.05          # fraction of range for Gaussian step
 # reduces the elite bonus to avoid over‑exploitation
 ACO_ELITE_BONUS_MULTIPLIER = 0.5
 
+
+#####################################################################################################################################
 # ==========================================
 # ACOR (Ant Colony Optimization for Continuous) Parameters
 # ==========================================
 
 # Core algorithm parameters
-ACOR_N_ANTS = 100
+ACOR_N_ANTS = 15
 ACOR_ITERATIONS = 50
 ACOR_ARCHIVE_SIZE = 30
 # concentration (lower = more focused on top solutions)
@@ -148,7 +149,7 @@ ACOR_KEEP_BEST_RATIO = 0.5      # fraction of best solutions to keep when resett
 ACOR_MIN_SIGMA_FRACTION = 0.01
 
 # Process pool settings
-ACOR_MAX_WORKERS = 8          # number of parallel evaluation workers
+ACOR_MAX_WORKERS = 8        # number of parallel evaluation workers
 
 # Initialisation method: 'uniform' or 'latin_hypercube'
 ACOR_INIT_METHOD = 'latin_hypercube'
